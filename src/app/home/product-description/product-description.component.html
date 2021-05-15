@@ -1,0 +1,58 @@
+    <button id="fixedbutton" mat-mini-fab (click)="close()">
+      <mat-icon>
+        clear
+      </mat-icon>
+    </button>
+<div class="flex-container">
+              <div class="image">
+                <img mat-card-image
+                class="img"
+                src="{{'./assets/'+product.productCode+'.jpg'}}"
+                  alt="{{product.productName}}"
+                  >
+            </div>
+            <div class="cataloge">
+              <mat-card-title>
+                  <app-translator Text={{product.productCategory}}></app-translator>
+                </mat-card-title>
+                <mat-card-subtitle>{{product.productName}}
+
+                </mat-card-subtitle>
+                  <mat-card-content>
+                    <p>
+                      {{product.productDescription}}
+                    </p>
+                    <strong>
+                     <br> <app-translator Text="Product Code"></app-translator> : {{ product.productCode }}
+                  </strong>
+                    <br>
+                    <strong>
+                     {{product.unitPrice| currency:"EUR":"symbol-narrow"}}
+                    </strong>
+                  </mat-card-content>
+                  <div *ngIf="product.requiredQuantity === 0 ">
+                  <mat-card-actions>
+                    <button mat-raised-button color="primary" (click)="addCart(product)">
+                    <mat-icon>
+                      add_shopping_cart
+                    </mat-icon>
+                      <app-translator Text="Add Cart"></app-translator>
+                    </button>
+                  </mat-card-actions>
+                  </div>
+
+                <div *ngIf="product.requiredQuantity > 0 ">
+                  <mat-card-actions>
+                    <button mat-mini-fab color="primary" (click)="removeQty(product)">
+                      <mat-icon>keyboard_arrow_down</mat-icon>
+                    </button>
+                    <button mat-mini-fab color="primary" disabled>
+                      {{product.requiredQuantity}}
+                    </button>
+                    <button mat-mini-fab color="primary" (click)="addQty(product)">
+                      <mat-icon>keyboard_arrow_up</mat-icon>
+                    </button>
+                  </mat-card-actions>
+                </div>
+            </div>
+</div>

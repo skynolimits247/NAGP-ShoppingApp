@@ -1,0 +1,8 @@
+<div>
+    <label for="{{'select language' | translate }}">
+        <mat-select #langselect (selectionChange)="langSelect(langselect)"
+            placeholder="{{this.browserLang}}">
+            <mat-option *ngFor="let lang of translate.getLangs()" [value]="lang">{{lang}}</mat-option>
+        </mat-select>
+    </label>
+</div>

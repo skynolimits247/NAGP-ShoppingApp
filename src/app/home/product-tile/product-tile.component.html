@@ -1,0 +1,27 @@
+           <mat-card (click)="productDetail(product)">
+              <img mat-card-image
+                class="img"
+                src="{{'./assets/'+product.productCode+'.jpg'}}"
+                  alt="{{product.productName}}"
+                  >
+
+                <mat-card-title>
+                  <app-translator Text={{product.productCategory}}></app-translator>
+                </mat-card-title>
+                <mat-card-subtitle>{{product.productName}}
+
+                </mat-card-subtitle>
+                  <mat-card-content>
+                    <!-- <strong>
+                      Avl. Quantity: {{product.maxQuantity}} unit(s).
+                    </strong> -->
+                    <strong>
+                     <br><app-translator Text="Product Code"></app-translator> : {{(product.productCode) }}
+                  </strong>
+                    <br>
+                    <strong>
+                     {{product.unitPrice| currency:"EUR":"symbol-narrow"}}
+                    </strong>
+                  </mat-card-content>
+
+            </mat-card>

@@ -1,0 +1,232 @@
+<div class="container">
+  <div class="flex-container">
+    <div class="container">
+
+        <button id="fixedbutton" mat-mini-fab (click)="toTop()" *ngIf="this.userCart.length > 0">
+          <mat-icon>
+            arrow_upward
+          </mat-icon>
+        </button>
+      <!-- <button mat-raised-button (click)="this.isLinear = !this.isLinear" id="toggle-linear">
+        {{!this.isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+      </button> -->
+                <div *ngIf="this.userCart.length === 0 ">
+              <h1>
+                <mat-icon>
+                  remove_shopping_cart
+                </mat-icon>
+                <app-translator Text="There are no items in your cart......!!"></app-translator>
+              </h1>
+            </div>
+      <mat-horizontal-stepper [linear]="isLinear" #stepper *ngIf="this.userCart.length > 0 ">
+
+
+        <mat-step>
+          <ng-template matStepLabel><app-translator Text="Cart Page"></app-translator></ng-template>
+
+              <table mat-table [dataSource]="this.userCart" class="mat-elevation-z8" style="text-align:center"
+              *ngIf="this.userCart.length > 0 ">
+
+                <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+                <!-- Position Column -->
+                <ng-container matColumnDef="imageUrl">
+                  <th mat-header-cell *matHeaderCellDef> <app-translator Text="Product Image"></app-translator> </th>
+                  <td mat-cell *matCellDef="let element">
+                    <img class="img2" src="{{'./assets/'+element.productCode+'.jpg'}}" alt="{{element.productName}}">
+                  </td>
+                </ng-container>
+
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="productName">
+                  <th mat-header-cell *matHeaderCellDef><app-translator Text="Product Name"></app-translator> </th>
+                  <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="requiredQuantity">
+                  <th mat-header-cell *matHeaderCellDef> <app-translator Text="Quantity"></app-translator> </th>
+                  <td mat-cell *matCellDef="let element">
+                    <button mat-mini-fab color="primary" (click)="removeQty(element)">
+                      <mat-icon>keyboard_arrow_down</mat-icon>
+                    </button>
+                    <button mat-mini-fab color="primary" disabled>
+                      {{element.requiredQuantity}}
+                    </button>
+                    <button mat-mini-fab color="primary" (click)="addQty(element)">
+                      <mat-icon>keyboard_arrow_up</mat-icon>
+                    </button>
+                     </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="unitPrice">
+                  <th mat-header-cell *matHeaderCellDef> <app-translator Text="Unit Price"></app-translator> </th>
+                  <td mat-cell *matCellDef="let element"> {{element.unitPrice | currency:"CAD":"symbol-narrow"}} </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="totalPrice">
+                  <th mat-header-cell *matHeaderCellDef> <app-translator Text="Total Price"></app-translator></th>
+                  <td mat-cell *matCellDef="let element">
+                    {{element.requiredQuantity * element.unitPrice | currency:"CAD":"symbol-narrow"}} </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="actions">
+                  <th mat-header-cell *matHeaderCellDef>  </th>
+                  <td mat-cell *matCellDef="let element">
+                      <div class="remove-cart" (click)="removeItem(element)">
+                        <mat-icon red>
+                          remove_shopping_cart
+                        </mat-icon>
+                      </div>
+                   </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+              <div class="step-footer" *ngIf="this.userCart.length > 0 ">
+                <button mat-raised-button matStepperPrevious
+                color="primary"
+                routerLink="/home" routerLinkActive="active">
+                <mat-icon>
+                  arrow_back
+                </mat-icon>
+                  <app-translator Text="Previous"></app-translator>
+                </button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button mat-raised-button matStepperNext color="primary">
+                  <mat-icon>
+                    shopping_basket
+                  </mat-icon>
+                  <app-translator Text="Proceed"></app-translator>
+                </button>
+              </div>
+
+        </mat-step>
+
+
+        <mat-step [stepControl]="userForm">
+          <mat-card>
+                      <div class="container">
+          <form [formGroup]="userForm">
+            <ng-template matStepLabel><app-translator Text="User Profile"></app-translator></ng-template>
+            <strong><app-translator Text="Enter your information here"></app-translator></strong>
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label><app-translator Text="First Mid Name"></app-translator></mat-label>
+                <input matInput placeholder="First Mid Name" formControlName="firstMidName" />
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label><app-translator Text="Last Name"></app-translator></mat-label>
+                <input matInput placeholder="Last Name" formControlName="lastName" />
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label><app-translator Text="Contact Number"></app-translator></mat-label>
+                <input matInput placeholder="Contact Number" formControlName="contactNumber" />
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label><app-translator Text="Email"></app-translator> </mat-label>
+                <input type="email" matInput placeholder="email" formControlName="email" />
+              </mat-form-field>
+            </p>
+            <div class="step-footer">
+              <button mat-raised-button matStepperPrevious color="primary">
+                <mat-icon>
+                  arrow_back
+                </mat-icon>
+                <app-translator Text="Previous"></app-translator>
+              </button>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <button mat-raised-button matStepperNext color="primary" (click)="userSubmit()" [disabled]="userForm.invalid">
+                <mat-icon>
+                  perm_identity
+                </mat-icon>
+                <app-translator Text="Proceed"></app-translator>
+              </button>
+            </div>
+          </form>
+          </div>
+          </mat-card>
+        </mat-step>
+
+
+        <mat-step [stepControl]="billingAddress">
+          <ng-template matStepLabel>
+            <app-translator Text="Address"></app-translator>
+          </ng-template>
+          <mat-card>
+            <app-address></app-address>
+          </mat-card>
+        </mat-step>
+<!-- delivery options -->
+        <mat-step>
+          <ng-template matStepLabel><app-translator Text="Done"></app-translator></ng-template>
+          <mat-card>
+          <mat-grid-list cols="6" rowHeight="2:1">
+            <mat-grid-tile colspan="4" style="text-align: left; align-self: left;">
+              {{this.defaultUser.firstMidName+' '+this.defaultUser.lastName}}<br>
+              {{this.userCart.length}} item(s)<br>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="2" style="text-align: right; align-self: right;">
+            <div>
+              <app-translator Text="Delivery on"></app-translator>:
+              <strong>{{this.shippingDate | date:'fullDate'}}</strong>
+            </div>
+            </mat-grid-tile>
+          </mat-grid-list>
+          </mat-card>
+
+          <mat-card *ngFor="let Item of this.userCart">
+          <mat-grid-list cols="5" rowHeight="2:1">
+            <mat-grid-tile>
+              <img class="img" src="{{'./assets/'+Item.productCode+'.jpg'}}" alt="">
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                {{Item.productName}}
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                {{Item.requiredQuantity}} X {{Item.unitPrice| currency:"CAD":"symbol-narrow"}}
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                {{Item.requiredQuantity * Item.unitPrice | currency:"CAD":"symbol-narrow"}}
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+             <div>
+               <app-translator Text="Delivery from"></app-translator> : <br>
+               <strong><app-translator Text="Shipment"></app-translator></strong>
+             </div>
+            </mat-grid-tile>
+          </mat-grid-list>
+          </mat-card>
+
+
+          <div class="step-footer">
+            <button mat-raised-button matStepperPrevious>
+            <mat-icon>
+              arrow_back
+            </mat-icon>
+              <app-translator Text="Previous"></app-translator>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button mat-raised-button (click)="createOrder()"><app-translator Text="Checkout"></app-translator></button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+
+    </div>
+  </div>
+</div>

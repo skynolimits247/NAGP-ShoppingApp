@@ -1,0 +1,34 @@
+<div id="navbar">
+  <ul>
+    <div class="category-menu" *ngFor="let cat of category">
+      <li (click)="categoryView(cat)"><span>
+        <app-translator Text={{cat}}> </app-translator>
+      </span></li>
+      <!-- <li><a routerLink="/about" routerLinkActive="active">ABOUT</a></li> -->
+      <!-- <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li> -->
+      <!-- <li ><a routerLink="/user" routerLinkActive="active">User Profile</a></li> -->
+    </div>
+    <li style="float:right">
+      <div class="search-box">
+        <mat-form-field>
+          <input matInput (keyup)="search($event.target.value)" placeholder="Search">
+        </mat-form-field>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="container">
+  <div class="flex-container">
+
+            <button id="fixedbutton" mat-mini-fab (click)="toTop()" *ngIf="this.products.length > 0">
+              <mat-icon>
+                arrow_upward
+              </mat-icon>
+            </button>
+            <app-no-data *ngIf="this.products.length <= 0"></app-no-data>
+          <div *ngFor="let product of products" class="container">
+            <app-product-tile [product]="product" ></app-product-tile>
+          </div>
+  </div>
+</div>

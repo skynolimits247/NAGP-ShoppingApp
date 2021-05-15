@@ -1,0 +1,112 @@
+ @import '~@angular/material/theming';
+
+// :host {
+//   @include mat-elevation(4);
+//   position: fixed;
+//   top: 0;
+//   width: 100%;
+//   margin-left: -8px !important;
+// }
+
+// @mixin app-header-theme($theme) {
+//   $background: white;
+
+//   margin: 0px 0px 0px 0px !important;
+//   .mat-toolbar {
+//     background-color: black;
+//   }
+
+// }
+
+
+.logo {
+  height: 70px;
+  margin-left: 12px;
+}
+
+ul {
+  list-style-type: none;
+  margin-top: -7px;
+  padding: 0;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+ul:hover {
+  box-shadow: 0 4px 8px 0 gray;
+  ;
+}
+
+li {
+  float: left;
+  padding-top: 11px;
+}
+
+li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 8px 16px;
+  text-decoration: none;
+  margin-top: 2px;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  color: black;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: black;
+  text-decoration-thickness: 3px;
+  text-decoration-skip-ink: auto;
+  text-underline-offset: 8px;
+  font-weight: bold;
+  //color: white;
+}
+
+img {
+  width: 5em;
+  margin-top: -1px;
+  margin-bottom: -4px;
+}
+
+.mat-icon {
+  margin-top: 2px;
+}
+
+.menu-item {
+  padding: 8px 0px 0px 0px;
+  font-weight: bold;
+}
+
+.header-band {
+  background-color: whitesmoke;
+  color: #808080;
+  font-size: smaller;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+}
+
+.icon-text {
+  position: relative;
+  top: -5px;
+  margin-left: 5px;
+}
+
+.login-button {
+  margin: 3px 0px 0px 0px;
+  cursor: pointer;
+}
+
+.right-aligned {
+  margin: 0px 0px 0px 0px;
+}
+.app-language-selector {
+  margin: 2px 0px 0px 12px;
+  padding: 0px 0px 0px 0px;
+}
+app-language-selector {
+  margin: 0px 8px 0px 10px;
+  padding: 0px 2px 0px 17px;
+}

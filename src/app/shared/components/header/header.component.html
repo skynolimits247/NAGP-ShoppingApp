@@ -1,0 +1,52 @@
+<!-- <mat-toolbar>
+  <ng-content select="[menu-icon]"></ng-content>
+  <img class="logo" src="./assets/top-logo.png" />
+  <div class="flex-spacing">
+    hello
+  </div>
+    <div class="flex-spacing">
+      hello
+    </div>
+  <ng-content select="[header-right]"></ng-content>
+</mat-toolbar> -->
+
+<div id="navbar">
+  <ul>
+    <li style="float:left"><a class="active" href="/about"><img src="./assets/banner-logo.jpg" alt=""></a></li>
+    <li><a routerLink="/home" routerLinkActive="active">
+    <app-translator Text="Home"> </app-translator>
+    </a></li>
+    <li class="app-language-selector">
+      <app-language-selector></app-language-selector>
+    </li>
+    <!-- <li><a routerLink="/about" routerLinkActive="active">ABOUT</a></li> -->
+    <!-- <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li> -->
+    <!-- <li ><a routerLink="/user" routerLinkActive="active">User Profile</a></li> -->
+    <li style="float:right"><a routerLink="/cart">
+        <span class="icon-text" *ngIf="this.item > 0">
+          <mat-icon matBadge="{{this.item}}" matBadgeColor="warn">shopping_bag</mat-icon>
+        </span>
+        <span class="icon-text" *ngIf="this.item === 0">
+          <mat-icon matBadgeColor="warn">shopping_bag</mat-icon>
+        </span>
+        </a>
+      </li>
+
+     <li *ngIf="isLoggedin" class="login-button" style="float:right">
+        <span (click)="logout()" >
+        <mat-icon matBadgeColor="warn">account_circle</mat-icon>
+        <span class="icon-text">
+          <app-translator Text="Logout"> </app-translator>
+        </span>
+      </span>
+    </li>
+     <li *ngIf="!isLoggedin" class="login-button" style="float:right">
+        <span (click)="login()">
+        <mat-icon matBadgeColor="warn">account_circle</mat-icon>
+        <span class="icon-text">
+          <app-translator Text="Login"> </app-translator>
+        </span>
+      </span>
+    </li>
+  </ul>
+</div>

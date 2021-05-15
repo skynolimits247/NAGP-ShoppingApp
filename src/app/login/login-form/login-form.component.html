@@ -1,0 +1,65 @@
+<div fxLayout="column" fxLayoutAlign="center center" class="login">
+  <mat-card>
+    <mat-card-content>
+      <div class="login-container">
+        <div fxLayout="row" fxLayoutAlign="center center" class="login-logo">
+          <img src="./assets/banner-logo.jpg" />
+        </div>
+               <div class="mat-typography login-header">
+          <h1> <app-translator Text="Shop"> </app-translator>
+          <span class="blue-highlight">
+            <app-translator Text="Easy"> </app-translator>
+          </span></h1>
+          <h3>
+            <app-translator Text="Sign In"> </app-translator>
+          </h3>
+        </div>
+        <div class="margin-t-24" fxLayout="column" [formGroup]="loginForm">
+          <mat-error *ngIf = "loginForm.controls['loginId']?.hasError('invalid') ">
+            <app-translator Text="Please enter valid login credentials..!!">
+            </app-translator>
+          </mat-error>
+          <mat-error *ngIf = "loginForm.hasError('no-response') ">
+            <app-translator Text="Oops..Something went wrong...please try again...!!">
+            </app-translator>
+          </mat-error>
+          <mat-form-field fxFlex="100" appearance="outline">
+            <mat-icon matPrefix>person_pin</mat-icon>
+            <mat-label>
+              <app-translator Text="Username"></app-translator>
+            </mat-label>
+            <input matInput placeholder="enter username" required formControlName="loginId">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100" appearance="outline">
+            <mat-icon matPrefix>lock</mat-icon>
+            <mat-label>
+              <app-translator Text="Password"></app-translator>
+            </mat-label>
+            <input matInput type="password" placeholder="enter password" required formControlName="password">
+          </mat-form-field>
+
+          <div fxLayout >
+            <button  fxFlex="100px" (click)="login()" mat-raised-button color="primary"
+            [disabled]="!loginForm.valid">
+            <div class="login-button">
+              <app-translator Text="Login"> </app-translator>
+            </div>
+            </button>
+            <button class="login-button" fxFlex="120px" (click)="reset()" mat-stroked-button
+                          [disabled]="loader.isLoading"><div class="login-button">
+                            <app-translator Text="Reset"> </app-translator>
+                          </div></button>
+            <!-- <div fxFlex="50px" class="translate-button">
+              <app-language-selector></app-language-selector>
+            </div> -->
+          </div>
+
+      </div>
+      </div>
+    </mat-card-content>
+        <mat-card-footer>
+          <mat-progress-bar mode="indeterminate" *ngIf="loader.isLoading"></mat-progress-bar>
+        </mat-card-footer>
+  </mat-card>
+</div>

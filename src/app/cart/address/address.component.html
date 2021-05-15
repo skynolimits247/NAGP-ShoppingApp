@@ -1,0 +1,56 @@
+         <form [formGroup]=billing>
+           <ng-template matStepLabel><app-translator Text="Fill out your address"></app-translator></ng-template>
+           <strong><app-translator Text="Enter your address here"></app-translator></strong>
+           <p>
+             <mat-form-field appearance="outline">
+               <mat-label><app-translator Text="House number"></app-translator></mat-label>
+               <input matInput placeholder="House no..." formControlName="houseNo" />
+             </mat-form-field>
+           </p>
+           <p>
+             <mat-form-field appearance="outline">
+               <mat-label><app-translator Text="Street"></app-translator></mat-label>
+               <input matInput placeholder="Street" formControlName="street" />
+             </mat-form-field>
+           </p>
+           <p>
+             <mat-form-field appearance="outline">
+               <mat-label><app-translator Text="City"></app-translator></mat-label>
+               <input matInput placeholder="City" formControlName="city" />
+             </mat-form-field>
+           </p>
+           <p>
+             <mat-form-field appearance="outline">
+               <mat-label><app-translator Text="Postal Code"></app-translator></mat-label>
+               <input matInput placeholder="Postal Code" formControlName="zipCode" />
+             </mat-form-field>
+           </p>
+           <p>
+             <mat-form-field appearance="outline">
+               <mat-label><app-translator Text="State"></app-translator></mat-label>
+               <input matInput placeholder="State" formControlName="state" />
+             </mat-form-field>
+           </p>
+           <p>
+             <mat-form-field appearance="outline">
+               <mat-label><app-translator Text="Country"></app-translator></mat-label>
+               <input matInput placeholder="Country" formControlName="country" />
+             </mat-form-field>
+           </p>
+           <div class="step-footer">
+             <button mat-raised-button matStepperPrevious color="primary">
+               <mat-icon>
+                 arrow_back
+               </mat-icon>
+               <app-translator Text="Previous"></app-translator>
+             </button>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button mat-raised-button matStepperNext color="primary" style="color:white"
+            [disabled]="billing.invalid" (click)="reserve()">
+            <mat-icon>
+              home
+            </mat-icon>
+            <app-translator Text="Proceed"></app-translator>
+          </button>
+           </div>
+         </form>
