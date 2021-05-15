@@ -1,7 +1,7 @@
 # NAGP | ShoppingApp
 
-Project deployed at : https://weather-app-ts.herokuapp.com/home
-GitHub Repo at : 
+Project deployed at : https://weather-app-ts.herokuapp.com/
+GitHub Repo at : https://github.com/skynolimits247/NAGP-ShoppingApp
 
 -> Category Tree Implemented
 -> Multi-lingual support is there for english and german
