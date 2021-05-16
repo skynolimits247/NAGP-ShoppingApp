@@ -3,8 +3,14 @@
 Project deployed at : https://weather-app-ts.herokuapp.com/
 GitHub Repo at : https://github.com/skynolimits247/NAGP-ShoppingApp
 
+Login
+userID: admin 
+password: admin1234
+
 -> Category Tree Implemented
 -> Multi-lingual support is there for english and german
+
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.2.
 
